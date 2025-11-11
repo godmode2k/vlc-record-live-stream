@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_RecordedList">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Recorded List"
+                android:textSize="24dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <CheckBox
+            android:id="@+id/CheckBox_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
+            android:visibility="gone"
+            android:text="전체"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ListView
+                android:id="@+id/ListView_recorded_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawSelectorOnTop="false"
+
+                android:smoothScrollbar="true"
+                android:alwaysDrawnWithCache="false"
+                android:cacheColorHint="#00000000"
+                android:fadeScrollbars="true"
+                android:focusable="false"
+                android:touchscreenBlocksFocus="true"
+                android:descendantFocusability="blocksDescendants"
+
+                android:divider="#70000000"
+                android:dividerHeight="1px" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#00000000"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <Button
+            android:id="@+id/Button_copy_internal_file_to_external"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text="'다운로드'로 복사"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:cornerRadius="0dp"
+            app:backgroundTint="#E0E0E0"/>
+        <Button
+            android:id="@+id/Button_delete_internal_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text="삭제"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:cornerRadius="0dp"
+            app:backgroundTint="#E0E0E0"/>
+        <Button
+            android:id="@+id/Button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text="취소"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:cornerRadius="0dp"
+            app:backgroundTint="#E0E0E0"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
