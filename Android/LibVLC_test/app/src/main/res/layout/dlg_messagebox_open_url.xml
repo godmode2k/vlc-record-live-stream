@@ -14,6 +14,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center">
 		<TextView
+			android:id="@+id/TextView_title"
 			android:layout_width="40dp"
 			android:layout_height="match_parent"
 			android:layout_margin="6dp"
@@ -35,6 +36,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center">
 		<TextView
+			android:id="@+id/TextView_url"
 			android:layout_width="40dp"
 			android:layout_height="match_parent"
 			android:layout_margin="6dp"

@@ -66,6 +66,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -132,6 +134,26 @@ public class Activity_OpenURL extends AppCompatActivity {
         Button button_cancel = (Button) findViewById(R.id.Button_cancel);
         CheckBox checkbox_select_all = (CheckBox) findViewById( R.id.CheckBox_select_all );
 
+        {
+            TextView tv_stream_url_list_title = (TextView) findViewById(R.id.TextView_stream_url_list_title);
+            if (tv_stream_url_list_title != null) {
+                tv_stream_url_list_title.setText(getString(R.string.activity_open_url__stream_url_list_title));
+            }
+            if (checkbox_select_all != null) {
+                checkbox_select_all.setText(getString(R.string.activity_open_url__layout_checkbox__select_all));
+            }
+            if ( button_add_url != null ) {
+                button_add_url.setText(getString(R.string.activity_open_url__layout_button__add_url));
+            }
+            if ( button_delete_url != null ) {
+                button_delete_url.setText(getString(R.string.activity_open_url__layout_button__delete_url));
+            }
+            if ( button_cancel != null ) {
+                button_cancel.setText(getString(R.string.activity_open_url__layout_button__cancel));
+            }
+        }
+
+
 //        if ( button_open_url != null ) {
 //            button_open_url.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -195,7 +217,8 @@ public class Activity_OpenURL extends AppCompatActivity {
                     Log.d( TAG, "checked urls: " + count );
 
                     if ( count <= 0 ) {
-                        Toast.makeText( getApplicationContext(), "삭제할 목록을 선택해 주세요.", Toast.LENGTH_SHORT ).show();
+                        //Toast.makeText( getApplicationContext(), "삭제할 목록을 선택해 주세요.", Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( getApplicationContext(), getString(R.string.activity_open_url__layout_button__delete_url__toast_select_to_delete), Toast.LENGTH_SHORT ).show();
                         return;
                     }
 
@@ -467,7 +490,8 @@ public class Activity_OpenURL extends AppCompatActivity {
     // final int pos: (-1) add a new one, (>=0) edit pos
     private void dlg_message_edit_open_url(final boolean edit,
                                            final int pos, final String title, final String url) {
-        final String strTitle = "Stream URL 입력";
+        //final String strTitle = "Stream URL 입력";
+        final String strTitle = getString(R.string.activity_open_url__dlg_message_edit_open_url__input_stream_url);
         final String strMessage = "";
         final AlertDialog.Builder winAlert;
         Dialog winDialog;
@@ -475,8 +499,18 @@ public class Activity_OpenURL extends AppCompatActivity {
         View viewDlgMessageBox = li.inflate( R.layout.dlg_messagebox_open_url, null );
 
         {
+            TextView tv_title = (TextView) viewDlgMessageBox.findViewById(R.id.TextView_title);
+            TextView tv_url = (TextView) viewDlgMessageBox.findViewById(R.id.TextView_url);
+
             EditText et_title = (EditText) viewDlgMessageBox.findViewById(R.id.EditText_title);
             EditText et_url = (EditText) viewDlgMessageBox.findViewById(R.id.EditText_url);
+
+            if ( tv_title != null ) {
+                tv_title.setText( getString(R.string.activity_open_url__layout_listview_item__title) );
+            }
+            if ( tv_url != null ) {
+                tv_url.setText( getString(R.string.activity_open_url__layout_listview_item__url) );
+            }
 
             if ( et_title != null ) {
                 et_title.setText( title );
@@ -530,7 +564,8 @@ public class Activity_OpenURL extends AppCompatActivity {
                             add_url( pos, title, url );
                         }
                         else {
-                            Toast.makeText( Activity_OpenURL.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT ).show();;
+                            //Toast.makeText( Activity_OpenURL.this, "내용을 입력해 주세요.", Toast.LENGTH_SHORT ).show();;
+                            Toast.makeText( Activity_OpenURL.this, getString(R.string.activity_open_url__dlg_message_edit_open_url__fill_all), Toast.LENGTH_SHORT ).show();;
                             return;
                         }
                     }
@@ -563,14 +598,18 @@ public class Activity_OpenURL extends AppCompatActivity {
         };
 
         winAlert = new AlertDialog.Builder( this )
-                .setIcon( R.mipmap.ic_menu_delete )
+                .setIcon( R.mipmap.ic_menu_edit )
                 .setOnKeyListener( keyListener )
                 .setTitle( strTitle )
                 .setMessage( strMessage )
                 // getResources().getString(R.string.dlgBtn_YES)
-                .setPositiveButton( (edit? "수정" : "추가"), okListener ) // -1
-                .setNeutralButton( "취소", okListener ) // -2
-                .setNegativeButton( "열기", okListener ) // -3
+                .setPositiveButton(
+                        (edit? getString(R.string.activity_open_url__dlg_message_edit_open_url__edit)
+                                :
+                                getString(R.string.activity_open_url__dlg_message_edit_open_url__add)),
+                        okListener ) // -1
+                .setNeutralButton( getString(R.string.activity_open_url__dlg_message_edit_open_url__cancel), okListener ) // -2
+                .setNegativeButton( getString(R.string.activity_open_url__dlg_message_edit_open_url__open), okListener ) // -3
                 .setView( viewDlgMessageBox );
         if ( winAlert != null ) {
             winDialog = winAlert.create();
@@ -581,8 +620,11 @@ public class Activity_OpenURL extends AppCompatActivity {
     }
 
     private void dlg_message_delete_urls(final int count) {
-        final String strTitle = "Stream URL 삭제";
-        final String strMessage = "선택한 목록을 삭제합니다.\n(" + count + ") 개 삭제";
+        //final String strTitle = "Stream URL 삭제";
+        //final String strMessage = "선택한 목록을 삭제합니다.\n(" + count + ") 개 삭제";
+        final String strTitle = getString(R.string.activity_open_url__dlg_message_delete_urls__delete_stream_url);
+        final String strMessage = getString(R.string.activity_open_url__dlg_message_delete_urls__delete_selected_1)
+                + count + getString(R.string.activity_open_url__dlg_message_delete_urls__delete_selected_2);
         final AlertDialog.Builder winAlert;
         Dialog winDialog;
         LayoutInflater li = LayoutInflater.from( this );
@@ -634,8 +676,8 @@ public class Activity_OpenURL extends AppCompatActivity {
                 .setTitle( strTitle )
                 .setMessage( strMessage )
                 // getResources().getString(R.string.dlgBtn_YES)
-                .setPositiveButton( "삭제", okListener )
-                .setNeutralButton( "취소", okListener )
+                .setPositiveButton( getString(R.string.activity_open_url__dlg_message_delete_urls__delete), okListener )
+                .setNeutralButton( getString(R.string.activity_open_url__dlg_message_delete_urls__cancel), okListener )
                 //.setNegativeButton( "취소", okListener )
                 .setView( viewDlgMessageBox );
         if ( winAlert != null ) {

@@ -1,4 +1,55 @@
 <resources>
     <!-- <string name="app_name">LibVLC_test</string> -->
     <string name="app_name">VLCRecordLiveStream</string>
+
+    <!-- App -->
+    <!-- "'다운로드'로 복사 중...\n" + ... + ... -->
+    <string name="app_copy_internal_file_to_public_download__progress_msg">Copying to \'Download\'...\\n</string>
+
+
+    <!-- MainActivity -->
+    <string name="main_activity__start_recording__toast_cannot_record">Cannot record (Playing Local Storage File...)</string>
+    <string name="main_activity__start_recording__toast_start_recording">Start Recording...</string>
+    <string name="main_activity__start_recording__toast_stop_recording">Stop Recording...</string>
+    <string name="main_activity__stop_recording__toast_stop_recording">Stop Recording...</string>
+
+
+    <!-- Activity_OpenURL -->
+    <string name="activity_open_url__stream_url_list_title">Stream URL List</string>
+    <string name="activity_open_url__layout_checkbox__select_all">All</string>
+    <string name="activity_open_url__layout_button__add_url">Add</string>
+    <string name="activity_open_url__layout_button__delete_url">Delete</string>
+    <string name="activity_open_url__layout_button__cancel">Cancel</string>
+    <string name="activity_open_url__layout_button__delete_url__toast_select_to_delete">Select to delete.</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__input_stream_url">Input Stream URL</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__fill_all">Fill all.</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__edit">Edit</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__add">Add</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__cancel">Cancel</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__open">Open</string>
+    <string name="activity_open_url__dlg_message_delete_urls__delete_stream_url">Delete Stream URL</string>
+    <!-- "선택한 목록을 삭제합니다.\n(" + count + ") 개 삭제" -->
+    <string name="activity_open_url__dlg_message_delete_urls__delete_selected_1">Delete selected.\\n(</string>
+    <string name="activity_open_url__dlg_message_delete_urls__delete_selected_2">) delete</string>
+    <string name="activity_open_url__dlg_message_delete_urls__delete">Delete</string>
+    <string name="activity_open_url__dlg_message_delete_urls__cancel">Cancel</string>
+    <string name="activity_open_url__layout_listview_item__title">Title</string>
+    <string name="activity_open_url__layout_listview_item__url">URL</string>
+
+
+    <!-- Activity_RecordedList -->
+    <string name="activity_recorded_list__recorded_list_title">Recorded List</string>
+    <string name="activity_recorded_list__layout_checkbox__select_all">All</string>
+    <string name="activity_recorded_list__layout_button__copy_internal_file_to_external">To \'Download\'</string>
+    <string name="activity_recorded_list__layout_button__delete_internal_file">Delete</string>
+    <string name="activity_recorded_list__layout_button__cancel">Cancel</string>
+    <string name="activity_recorded_list__layout_button__copy_internal_file_to_external__toast_select_file_to_copy">Select files to copy.</string>
+    <string name="activity_recorded_list__layout_button_delete_internal_file__toast_select_file_to_delete">Select files to delete.</string>
+    <string name="activity_recorded_list__dlg_message_delete_record_files__delete_recorded_file">Delete recorded files</string>
+    <!-- "선택한 파일을 삭제합니다.\n(" + count + ") 개 파일 삭제" -->
+    <string name="activity_recorded_list__dlg_message_delete_record_files__delete_selected_1">Delete selected file.\\n(</string>
+    <string name="activity_recorded_list__dlg_message_delete_record_files__delete_selected_2">) delete file</string>
+    <string name="activity_recorded_list__dlg_message_delete_record_files__delete">Delete</string>
+    <string name="activity_recorded_list__dlg_message_delete_record_files__cancel">Cancel</string>
+
 </resources>

@@ -221,7 +221,8 @@ public class App extends Application {
 
                         size += bytes;
 
-                        String msg = "'다운로드'로 복사 중...\n";
+                        //String msg = "'다운로드'로 복사 중...\n";
+                        String msg = getString(R.string.app_copy_internal_file_to_public_download__progress_msg);
                         msg += (((i+1) * 100) / src_list_filename.size()) + "% " + "(" + (i+1) + "/" + src_list_filename.size() + ")\n";
                         msg += "(" + size + "/" + src_file_size + ")";
                         //Log.d( TAG, "progress: " + msg );

@@ -158,6 +158,27 @@ public class Activity_RecordedList extends AppCompatActivity {
         Button button_cancel = findViewById( R.id.Button_cancel );
         CheckBox checkbox_select_all = (CheckBox) findViewById( R.id.CheckBox_select_all );
 
+        {
+            TextView tv_recorded_list_title = (TextView) findViewById(R.id.TextView_recorded_list_title);
+            if (tv_recorded_list_title != null) {
+                //tv_recorded_list_title.setText( "Recorded List (" + m_list_items.size() + ")" );
+                tv_recorded_list_title.setText(getString(R.string.activity_recorded_list__recorded_list_title) + " (" + m_list_items.size() + ")");
+            }
+            if (checkbox_select_all != null) {
+                checkbox_select_all.setText(R.string.activity_recorded_list__layout_checkbox__select_all);
+            }
+
+            if (button_copy_internal_file_to_external != null) {
+                button_copy_internal_file_to_external.setText(R.string.activity_recorded_list__layout_button__copy_internal_file_to_external);
+            }
+            if (button_delete_internal_file != null) {
+                button_delete_internal_file.setText(R.string.activity_recorded_list__layout_button__delete_internal_file);
+            }
+            if (button_cancel != null) {
+                button_cancel.setText(R.string.activity_recorded_list__layout_button__cancel);
+            }
+        }
+
         button_copy_internal_file_to_external.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -185,7 +206,8 @@ public class Activity_RecordedList extends AppCompatActivity {
                 }
 
                 if ( count <= 0 ) {
-                    Toast.makeText( getApplicationContext(), "복사할 파일을 선택해 주세요.", Toast.LENGTH_SHORT ).show();
+                    //Toast.makeText( getApplicationContext(), "복사할 파일을 선택해 주세요.", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( getApplicationContext(), getString(R.string.activity_recorded_list__layout_button__copy_internal_file_to_external__toast_select_file_to_copy), Toast.LENGTH_SHORT ).show();
                     return;
                 }
 
@@ -215,7 +237,8 @@ public class Activity_RecordedList extends AppCompatActivity {
                 Log.d( TAG, "checked files: " + count );
 
                 if ( count <= 0 ) {
-                    Toast.makeText( getApplicationContext(), "삭제할 파일을 선택해 주세요.", Toast.LENGTH_SHORT ).show();
+                    //Toast.makeText( getApplicationContext(), "삭제할 파일을 선택해 주세요.", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( getApplicationContext(), getString(R.string.activity_recorded_list__layout_button_delete_internal_file__toast_select_file_to_delete), Toast.LENGTH_SHORT ).show();
                     return;
                 }
 
@@ -432,8 +455,11 @@ public class Activity_RecordedList extends AppCompatActivity {
     }
 
     private void dlg_message_delete_record_files(final int count) {
-        final String strTitle = "녹화된 파일 삭제";
-        final String strMessage = "선택한 파일을 삭제합니다.\n(" + count + ") 개 파일 삭제";
+        //final String strTitle = "녹화된 파일 삭제";
+        //final String strMessage = "선택한 파일을 삭제합니다.\n(" + count + ") 개 파일 삭제";
+        final String strTitle = getString(R.string.activity_recorded_list__dlg_message_delete_record_files__delete_recorded_file);
+        final String strMessage = getString(R.string.activity_recorded_list__dlg_message_delete_record_files__delete_selected_1)
+                + count + getString(R.string.activity_recorded_list__dlg_message_delete_record_files__delete_selected_2);
         final AlertDialog.Builder winAlert;
         Dialog winDialog;
         LayoutInflater li = LayoutInflater.from( this );
@@ -485,8 +511,8 @@ public class Activity_RecordedList extends AppCompatActivity {
                 .setTitle( strTitle )
                 .setMessage( strMessage )
                 // getResources().getString(R.string.dlgBtn_YES)
-                .setPositiveButton( "삭제", okListener )
-                .setNeutralButton( "취소", okListener )
+                .setPositiveButton( getString(R.string.activity_recorded_list__dlg_message_delete_record_files__delete), okListener )
+                .setNeutralButton( getString(R.string.activity_recorded_list__dlg_message_delete_record_files__cancel), okListener )
                 //.setNegativeButton( "취소", okListener )
                 .setView( viewDlgMessageBox );
         if ( winAlert != null ) {

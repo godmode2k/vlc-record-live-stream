@@ -1,0 +1,55 @@
+<resources>
+    <!-- <string name="app_name">LibVLC_test</string> -->
+    <string name="app_name">VLCRecordLiveStream</string>
+
+    <!-- App -->
+    <!-- "'다운로드'로 복사 중...\n" + ... + ... -->
+    <string name="app_copy_internal_file_to_public_download__progress_msg">\'다운로드\'로 복사 중...\\n</string>
+
+
+    <!-- MainActivity -->
+    <string name="main_activity__start_recording__toast_cannot_record">녹화할 수 없습니다. (로컬 스토리지에 있는 파일 재생 중...)</string>
+    <string name="main_activity__start_recording__toast_start_recording">녹화 중...</string>
+    <string name="main_activity__start_recording__toast_stop_recording">녹화 중지 중...</string>
+    <string name="main_activity__stop_recording__toast_stop_recording">녹화 중지 중...</string>
+
+
+    <!-- Activity_OpenURL -->
+    <string name="activity_open_url__stream_url_list_title">실시간(스트림) 주소 목록</string>
+    <string name="activity_open_url__layout_checkbox__select_all">전체</string>
+    <string name="activity_open_url__layout_button__add_url">추가</string>
+    <string name="activity_open_url__layout_button__delete_url">삭제</string>
+    <string name="activity_open_url__layout_button__cancel">취소</string>
+    <string name="activity_open_url__layout_button__delete_url__toast_select_to_delete">삭제할 목록을 선택해 주세요.</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__input_stream_url">실시간(스트림) 주소 입력</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__fill_all">내용을 입력해 주세요.</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__edit">수정</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__add">추가</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__cancel">취소</string>
+    <string name="activity_open_url__dlg_message_edit_open_url__open">열기</string>
+    <string name="activity_open_url__dlg_message_delete_urls__delete_stream_url">실시간(스트림) 주소 삭제</string>
+    <!-- "선택한 목록을 삭제합니다.\n(" + count + ") 개 삭제" -->
+    <string name="activity_open_url__dlg_message_delete_urls__delete_selected_1">선택한 목록을 삭제합니다.\\n(</string>
+    <string name="activity_open_url__dlg_message_delete_urls__delete_selected_2">) 개 삭제</string>
+    <string name="activity_open_url__dlg_message_delete_urls__delete">삭제</string>
+    <string name="activity_open_url__dlg_message_delete_urls__cancel">취소</string>
+    <string name="activity_open_url__layout_listview_item__title">제목</string>
+    <string name="activity_open_url__layout_listview_item__url">주소(URL)</string>
+
+
+    <!-- Activity_RecordedList -->
+    <string name="activity_recorded_list__recorded_list_title">녹화된 파일 목록</string>
+    <string name="activity_recorded_list__layout_checkbox__select_all">전체</string>
+    <string name="activity_recorded_list__layout_button__copy_internal_file_to_external">\'다운로드\'로 복사</string>
+    <string name="activity_recorded_list__layout_button__delete_internal_file">삭제</string>
+    <string name="activity_recorded_list__layout_button__cancel">취소</string>
+    <string name="activity_recorded_list__layout_button__copy_internal_file_to_external__toast_select_file_to_copy">복사할 파일을 선택해 주세요.</string>
+    <string name="activity_recorded_list__layout_button_delete_internal_file__toast_select_file_to_delete">삭제할 파일을 선택해 주세요.</string>
+    <string name="activity_recorded_list__dlg_message_delete_record_files__delete_recorded_file">녹화된 파일 삭제</string>
+    <!-- "선택한 파일을 삭제합니다.\n(" + count + ") 개 파일 삭제" -->
+    <string name="activity_recorded_list__dlg_message_delete_record_files__delete_selected_1">선택한 파일을 삭제합니다.\\n(</string>
+    <string name="activity_recorded_list__dlg_message_delete_record_files__delete_selected_2">) 개 파일 삭제</string>
+    <string name="activity_recorded_list__dlg_message_delete_record_files__delete">삭제</string>
+    <string name="activity_recorded_list__dlg_message_delete_record_files__cancel">취소</string>
+
+</resources>

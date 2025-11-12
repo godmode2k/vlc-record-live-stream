@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final boolean USE_TEXTURE_VIEW = false;
     private static final boolean ENABLE_SUBTITLES = true;
-    private static final String ASSET_FILENAME = "bbb.m4v";
-    private static final String m_filename = "/sdcard/Download/bbb.mp4";
+    //private static final String ASSET_FILENAME = "bbb.m4v";
+    //private static final String m_filename = "/sdcard/Download/bbb.mp4";
     private Uri m_uri_stream = null;
     private String m_stream_url = null;
     private String m_stream_title = null;
@@ -876,7 +876,8 @@ public class MainActivity extends AppCompatActivity {
 
         if ( m_is_play_recorded_file ) {
             Log.d( TAG, "start_recording(): Media Type = Local Storage File..." );
-            Toast.makeText( getApplicationContext(), "Cannot record, playing local storage file...", Toast.LENGTH_SHORT ).show();
+            //Toast.makeText( getApplicationContext(), "Cannot record, playing local storage file...", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( getApplicationContext(), getString(R.string.main_activity__start_recording__toast_cannot_record), Toast.LENGTH_SHORT ).show();
             return;
         }
 
@@ -885,7 +886,8 @@ public class MainActivity extends AppCompatActivity {
         ImageView button_record = (ImageView) findViewById(R.id.Button_record);
 
         if ( m_is_recording ) {
-            Toast.makeText( getApplicationContext(), "Start Recording...", Toast.LENGTH_SHORT ).show();
+            //Toast.makeText( getApplicationContext(), "Start Recording...", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( getApplicationContext(), getString(R.string.main_activity__start_recording__toast_start_recording), Toast.LENGTH_SHORT ).show();
 
             //button_record.setText( "Stop Recording");
             button_record.setImageResource( R.mipmap.btn_radio_on_selected );
@@ -978,7 +980,8 @@ public class MainActivity extends AppCompatActivity {
             mMediaPlayer_record_stdout.play();
         }
         else {
-            Toast.makeText( getApplicationContext(), "Stop Recording...", Toast.LENGTH_SHORT ).show();
+            //Toast.makeText( getApplicationContext(), "Stop Recording...", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( getApplicationContext(), getString(R.string.main_activity__start_recording__toast_stop_recording), Toast.LENGTH_SHORT ).show();
 
             //button_record.setText( "Record");
             button_record.setImageResource( R.mipmap.btn_radio_off_selected );
@@ -1077,7 +1080,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if ( m_is_recording ) {
-            Toast.makeText( getApplicationContext(), "Stop Recording...", Toast.LENGTH_SHORT ).show();
+            //Toast.makeText( getApplicationContext(), "Stop Recording...", Toast.LENGTH_SHORT ).show();
+            Toast.makeText( getApplicationContext(), getString(R.string.main_activity__stop_recording__toast_stop_recording), Toast.LENGTH_SHORT ).show();
 
             // SEE: get_record_status(): Runnable::run()
             m_record_total_bytes_read = 0;
