@@ -624,7 +624,8 @@ public class Activity_OpenURL extends AppCompatActivity {
         //final String strMessage = "선택한 목록을 삭제합니다.\n(" + count + ") 개 삭제";
         final String strTitle = getString(R.string.activity_open_url__dlg_message_delete_urls__delete_stream_url);
         final String strMessage = getString(R.string.activity_open_url__dlg_message_delete_urls__delete_selected_1)
-                + count + getString(R.string.activity_open_url__dlg_message_delete_urls__delete_selected_2);
+                + "\n(" + count + ") "
+                + getString(R.string.activity_open_url__dlg_message_delete_urls__delete_selected_2);
         final AlertDialog.Builder winAlert;
         Dialog winDialog;
         LayoutInflater li = LayoutInflater.from( this );

@@ -459,7 +459,8 @@ public class Activity_RecordedList extends AppCompatActivity {
         //final String strMessage = "선택한 파일을 삭제합니다.\n(" + count + ") 개 파일 삭제";
         final String strTitle = getString(R.string.activity_recorded_list__dlg_message_delete_record_files__delete_recorded_file);
         final String strMessage = getString(R.string.activity_recorded_list__dlg_message_delete_record_files__delete_selected_1)
-                + count + getString(R.string.activity_recorded_list__dlg_message_delete_record_files__delete_selected_2);
+                + "\n(" + count + ") "
+                + getString(R.string.activity_recorded_list__dlg_message_delete_record_files__delete_selected_2);
         final AlertDialog.Builder winAlert;
         Dialog winDialog;
         LayoutInflater li = LayoutInflater.from( this );

@@ -131,9 +131,11 @@ public class App extends Application {
         //
     }
 
-    public void copy_internal_file_to_public_download(final ArrayList<String> src_list_filename,
+    public boolean copy_internal_file_to_public_download(final ArrayList<String> src_list_filename,
                                                       final String dst_dir, RunTask task) {
         Log.d( TAG, "src size: " + src_list_filename.size() );
+
+        boolean ret = false;
 
         for ( int i = 0; i < src_list_filename.size(); i++ ) {
             final String src_filename = src_list_filename.get(i);
@@ -186,7 +188,7 @@ public class App extends Application {
 
                     if (fileUri == null) {
                         Log.d(TAG, "output == NULL");
-                        return;
+                        return false;
                     }
 
                     //try (OutputStream outputStream = resolver.openOutputStream(fileUri)) {
@@ -203,7 +205,7 @@ public class App extends Application {
                     os = resolver.openOutputStream(fileUri);
                     if (os == null) {
                         Log.d(TAG, "output == NULL");
-                        return;
+                        return false;
                     }
 
                     Log.d(TAG, "Copying...  (" + (i+1) + "/" + src_list_filename.size() + ")");
@@ -222,22 +224,25 @@ public class App extends Application {
                         size += bytes;
 
                         //String msg = "'다운로드'로 복사 중...\n";
-                        String msg = getString(R.string.app_copy_internal_file_to_public_download__progress_msg);
+                        String msg = getString(R.string.app__copy_internal_file_to_public_download__progress_msg) + "\n";
                         msg += (((i+1) * 100) / src_list_filename.size()) + "% " + "(" + (i+1) + "/" + src_list_filename.size() + ")\n";
-                        msg += "(" + size + "/" + src_file_size + ")";
+                        msg += "(" + humanReadableByteCountBin(size) + "/" + humanReadableByteCountBin(src_file_size) + ")";
                         //Log.d( TAG, "progress: " + msg );
                         task.updates_progress(msg);
 
                         os.write(buffer, 0, bytes);
                     }
                     os.flush();
-                    Log.d(TAG, "done...");
+                    Log.d(TAG, "done..., cancelled: + " + m_cancel_process);
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         contentValues.clear();
                         contentValues.put(MediaStore.MediaColumns.IS_PENDING, 0);
                         resolver.update(fileUri, contentValues, null, null);
                     }
+
+                    if ( m_cancel_process ) ret = false;
+                    else ret = true;
                 }
 
                 is.close();
@@ -249,10 +254,13 @@ public class App extends Application {
             }
         }
 
+        return ret;
     }
 
-    public void delete_internal_file(final ArrayList<String> src_list_filename) {
+    public boolean  delete_internal_file(final ArrayList<String> src_list_filename) {
         Log.d( TAG, "src size: " + src_list_filename.size() );
+
+        boolean ret = true;
 
         for ( var src_filename: src_list_filename ) {
             try {
@@ -262,6 +270,7 @@ public class App extends Application {
                         Log.d(TAG, "target deleted: " + target.getAbsolutePath());
                     } else {
                         Log.d(TAG, "target deleted [FAIL]: " + target.getAbsolutePath());
+                        ret = false; // even one
                     }
                 }
                 else {
@@ -269,8 +278,11 @@ public class App extends Application {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                ret = false;
             }
         }
+
+        return ret;
     }
 
     public void run_with_progress(Context context, final int type,
@@ -298,6 +310,15 @@ public class App extends Application {
                 m_cancel_process = true;
             }
         });
+        m_progress_dialog.setButton(DialogInterface.BUTTON_NEGATIVE,
+                getString(R.string.app__progress_dialog_button__cancel),
+                new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                m_cancel_process = true;
+                //dialogInterface.dismiss();
+            }
+        });
         m_progress_dialog.show();
 
         if ( task == null ) {
@@ -310,26 +331,30 @@ public class App extends Application {
     }
 
     public class RunTask extends AsyncTask<Object, Object, Object> {
+        int m_type = -1;
+
         @Override
         protected Object doInBackground(Object... objects) {
             //return null;
 
+            boolean ret = false;
             final int type = (Integer) objects[0];
             final ArrayList<String> src_list = (ArrayList<String>) objects[1];
             final String dst_dir = (String) objects[2];
 
             m_cancel_process = false;
+            m_type = type;
 
             if ( type == RUN_TYPE__COPY_INTERNAL_FILE_TO_PUBLIC_DOWNLOAD ) {
-                copy_internal_file_to_public_download( src_list, dst_dir, this );
+                ret = copy_internal_file_to_public_download( src_list, dst_dir, this );
             }
             else if ( type == RUN_TYPE__DELETE_INTERNAL_FILE ) {
-                delete_internal_file( src_list );
+                ret = delete_internal_file( src_list );
             }
 
             src_list.clear();
 
-            return null;
+            return ret;
         }
 
         public void updates_progress(final String val) {
@@ -356,6 +381,28 @@ public class App extends Application {
             }
 
             //Toast.makeText( m_context, "done...", Toast.LENGTH_SHORT ).show();
+
+            boolean ret = (boolean) o;
+            String msg = "";
+
+            if ( ret ) {
+                if ( m_type == RUN_TYPE__COPY_INTERNAL_FILE_TO_PUBLIC_DOWNLOAD ) {
+                    msg = getString(R.string.app__toast_copy_files_to_public_download_done);
+                }
+                else if ( m_type == RUN_TYPE__DELETE_INTERNAL_FILE ) {
+                    msg = getString(R.string.app__toast_delete_files_done);
+                }
+            }
+            else {
+                if ( m_type == RUN_TYPE__COPY_INTERNAL_FILE_TO_PUBLIC_DOWNLOAD ) {
+                    msg = getString(R.string.app__toast_copy_files_to_public_download_fail);
+                }
+                else if ( m_type == RUN_TYPE__DELETE_INTERNAL_FILE ) {
+                    msg = getString(R.string.app__toast_delete_files_fail);
+                }
+            }
+
+            Toast.makeText( m_context, msg, Toast.LENGTH_SHORT ).show();
         }
     }
 
